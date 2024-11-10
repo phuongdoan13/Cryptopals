@@ -2,6 +2,7 @@ package singlebyteXorCipher
 
 import (
 	"encoding/hex"
+	"fmt"
 	"testing"
 )
 
@@ -19,7 +20,6 @@ import (
 // Achievement Unlocked
 // You now have our permission to make "ETAOIN SHRDLU" jokes on Twitter.
 
-
 // Reflection:
 // The test does not support text with multi-byte characters and punctuations
 
@@ -36,8 +36,40 @@ func TestSinglebyteXorCipherWithEnglishOnly(t *testing.T) {
 	}
 }
 
-func TestSinglebyteXorCipherWithMultiByteCharacters(t *testing.T) {
-	expected := "asdfoashdpfohaspodfopasdnpovbawpoebopwefpo bwopfewef asdfasef"
+type TestCase struct {
+	input string
+	expected string
+}
+
+func TestIntMinTableDriven(t *testing.T) {
+	var tests = []TestCase {
+		{createInputStrFromExpected("Hello world"), "Hello world"},
+		{createInputStrFromExpected("Welcome to cryptopal"), "Welcome to cryptopal"},
+		{createInputStrFromExpected("This is a test that you need! @harry"), "This is a test that you need! @harry"},
+		{createInputStrFromExpected("I'm so happy that I have a chance to read on O'reilly"), "I'm so happy that I have a chance to read on O'reilly"},
+	}
+
+	for _, tt := range tests {
+		// t.Run enables running "subtests", one for each
+		// table entry. These are shown separately
+		// when executing `go test -v`.
+		testname := fmt.Sprintf("%s,%s", tt.input, tt.expected)
+		t.Run(testname, func(t *testing.T) {
+			ans, err := SinglebyteXorCipher(tt.input)
+			if err != nil {
+				t.Fatal(err)
+			}
+
+			if ans != tt.expected {
+				t.Errorf("Got:	'%s'\nExpected: '%s'", 
+				ans, tt.expected)
+			}
+		})
+	}
+}
+
+func TestSinglebyteXorCipherWithCustomTestcases(t *testing.T) {
+	expected := "Hello my name is Harry."
 	input := createInputStrFromExpected(expected)
 
 	result, err := SinglebyteXorCipher(input)
