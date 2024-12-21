@@ -8,7 +8,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/phuongdoan13/Cryptopals/set1/SinglebyteXorCipher"
+	"github.com/phuongdoan13/Cryptopals/set1/s1p3_SinglebyteXorCipher"
 )
 
 func readFile() (<-chan string, error){
