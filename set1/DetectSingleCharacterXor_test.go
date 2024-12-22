@@ -1,4 +1,4 @@
-package detectsinglecharacter
+package set1
 
 import (
 	"bufio"
@@ -12,7 +12,7 @@ import (
 )
 
 func readFile() (<-chan string, error){
-	fptr := flag.String("fpath", "puzzle.txt", "file path to read from")
+	fptr := flag.String("fpath", "data/puzzle.txt", "file path to read from")
   flag.Parse()
 
   f, err := os.Open(*fptr)

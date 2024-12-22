@@ -1,4 +1,4 @@
-package hextobase64converter
+package set1
 
 import (
 	"testing"

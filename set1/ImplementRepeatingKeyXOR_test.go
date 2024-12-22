@@ -1,4 +1,4 @@
-package implementRepeatingKeyXor
+package set1 
 
 import (
 	"testing"
