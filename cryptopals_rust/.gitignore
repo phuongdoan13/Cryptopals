@@ -1,0 +1,15 @@
+# Rust
+/target/
+/**/*.rs.bk       # backup files some tools create
+
+# Lockfile rule:
+# If this is a *library crate*, ignore Cargo.lock:
+# Cargo.lock
+# If this is a *binary/app*, commit Cargo.lock (do NOT ignore it).
+
+# Editors / OS (optional but handy)
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
